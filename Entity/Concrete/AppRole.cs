@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace Entity.Concrete;
+namespace DataAccess.Entities;
 
-public class AppRole :IdentityRole<int>
+public class AppRole : IdentityRole<int>
 {
     public string RoleName { get; set; }
 }

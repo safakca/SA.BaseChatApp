@@ -1,5 +1,4 @@
-﻿using Business.Abstract;
-using DataAccess.Context;
+﻿using DataAccess.Context;
 
 namespace DataAccess.Repository;
 
@@ -17,7 +16,6 @@ public class BaseRepository<Tentity> : IBaseRepository<Tentity> where Tentity : 
         _context.Add(entity);
         _context.SaveChanges();
     }
-
     public void Remove(Tentity entity)
     {
         _context.Remove(entity);

@@ -1,0 +1,54 @@
+﻿@{
+    ViewData["Title"] = "Messages";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="left-chat-title d-flex justify-content-between align-items-center">
+    <div class="chat-title">
+        <h4>MESAJLAR</h4>
+    </div>
+</div>
+<div class="search_chat has-search">
+    <span class="fas fa-search form-control-feedback"></span>
+    <input class="form-control chat_input" id="search-contacts" type="text" placeholder="Arama">
+</div>
+<div class="sidebar-body" id="chatsidebar">
+    <div class="left-chat-title d-flex justify-content-between align-items-center ps-0 pe-0">
+        <div class="chat-title">
+            <h4>Sohbetler</h4>
+        </div>
+        <div class="add-section">
+            <a href="#"><i class="fas fa-edit"></i></a>
+        </div>
+    </div>
+
+    <ul class="user-list mt-2">
+        @{
+            string name = "";
+            foreach (var item in ViewBag.ListMessage)
+            {
+
+                if (item.AppUser.Name != name)
+                {
+                    name = item.AppUser.Name;
+                    <li class="user-list-item">
+                        <div class="avatar avatar-online">
+                            <img src="~/UserImage/@item.AppUser.ImageUrl" class="rounded-circle" alt="image">
+                        </div>
+                        <div class="users-list-body">
+                            <div>
+                                <a href="/Message/ChatDetail/@item.AppUserID"><h5>@item.AppUser.Name</h5></a>
+                            </div>
+                        </div>
+                    </li>
+                }
+
+            }
+        }
+
+    </ul>
+</div>
+
+
+
+

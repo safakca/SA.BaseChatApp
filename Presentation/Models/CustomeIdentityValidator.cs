@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace Presentation.Models; 
+namespace Presentation.Models;
 //TODO: bu class ve gerekliligini kontrol et
 
 public class CustomeIdentityValidator : IdentityErrorDescriber
