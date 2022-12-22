@@ -19,11 +19,11 @@ namespace Presentation.Controllers
         {
             return View();
         }
-        
+
         [HttpPost]
         public async Task<IActionResult> Index(UserSignInModel model)
         {
-            var result = await _userManager.PasswordSignInAsync(model.UserName, model.Password,true,true);
+            var result = await _userManager.PasswordSignInAsync(model.UserName, model.Password, true, true);
             if (result.Succeeded)
                 return RedirectToAction("Chats", "Message");
             return View();
@@ -41,3 +41,4 @@ namespace Presentation.Controllers
         }
     }
 }
+//myYilmaz MUS.tafa+99

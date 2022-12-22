@@ -20,5 +20,10 @@ namespace Presentation.Controllers
         {
             return View();
         }
+
+        public async Task<PartialViewResult> ListMessagePartial()
+        {
+            return PartialView();
+        }
     }
 }

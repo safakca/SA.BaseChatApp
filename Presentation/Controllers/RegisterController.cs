@@ -24,7 +24,7 @@ namespace Presentation.Controllers
             var result = await _userManager.CreateAsync(appUser, appUser.PasswordHash);
             if (result.Succeeded)
                 return RedirectToAction("Index", "Login");
-            return View(); 
+            return View();
         }
     }
 }

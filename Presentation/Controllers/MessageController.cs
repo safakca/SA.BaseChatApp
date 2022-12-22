@@ -4,12 +4,10 @@ using DataAccess.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
-using System.Xml.Linq;
 
 namespace Presentation.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class MessageController : Controller
     {
         private readonly UserManager<AppUser> _userManager;
@@ -49,8 +47,8 @@ namespace Presentation.Controllers
             ViewBag.receiverId = sendMessage[0].AppUserId;
 
             var incomingMessage = _messageService.GetMessagesBySender(user.PhoneNumber, user.Id);
-            
-            List<Message> listMessages=new List<Message>();
+
+            List<Message> listMessages = new List<Message>();
             listMessages.AddRange(sendMessage);
             listMessages.AddRange(incomingMessage);
             ViewBag.listMessages = listMessages.OrderBy(x => x.Date);
@@ -69,8 +67,8 @@ namespace Presentation.Controllers
 
             newMessage.Content = message.Content;
             newMessage.SenderPhone = message.SenderPhone;
-            newMessage.ReceiverPhone= message.ReceiverPhone;
-            newMessage.Date= DateTime.Now;
+            newMessage.ReceiverPhone = message.ReceiverPhone;
+            newMessage.Date = DateTime.Now;
 
             _messageService.Create(newMessage);
             return RedirectToAction("Chat", "Message");
@@ -81,14 +79,15 @@ namespace Presentation.Controllers
         {
             Message newMessage = new Message();
             var sender = await _userManager.FindByNameAsync(User.Identity.Name);
-            var receiver = _context.Users.Where(x=>x.Id == receiverId).FirstOrDefault();
+
+            var receiver = _context.Users.Where(x => x.Id == receiverId).FirstOrDefault();
             newMessage.ReceiverName = receiver.Name + " " + receiver.Surname;
             newMessage.ReceiverPhone = receiver.PhoneNumber;
 
             newMessage.AppUserId = receiverId;
             newMessage.SenderPhone = sender.PhoneNumber;
             newMessage.Content = MessageContent;
-            newMessage.Date= DateTime.Now;
+            newMessage.Date = DateTime.Now;
 
             _messageService.Create(newMessage);
             return RedirectToAction("ChatDetails", new { @id = receiverId });

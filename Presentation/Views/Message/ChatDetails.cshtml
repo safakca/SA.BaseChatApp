@@ -1,13 +1,13 @@
 ﻿@{
-    ViewData["Title"] = "ChatDetail";
-    Layout = "~/Views/Shared/_MessageLayout.cshtml";
+    ViewData["Title"] = "ChatDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="sidebar-group left-sidebar chat_sidebar">
-    <div id="chats" class="left-sidebar-wrap sidebar active slimscroll">
+<div>
+    <div id="chats">
         <div class="slimscroll">
             <div class="left-chat-title d-flex justify-content-between align-items-center">
                 <div class="chat-title">
-                    <h4>MESAJLAR</h4>
+                    <h4>Messages</h4>
                 </div>
             </div>
             <div class="search_chat has-search">
@@ -17,7 +17,7 @@
             <div class="sidebar-body" id="chatsidebar">
                 <div class="left-chat-title d-flex justify-content-between align-items-center ps-0 pe-0">
                     <div class="chat-title">
-                        <h4>Sohbetler</h4>
+                        <h4>Chats</h4>
                     </div>
                     <div class="add-section">
                         <a href="#"><i class="fas fa-edit"></i></a>
@@ -27,7 +27,7 @@
                 <ul class="user-list mt-2">
                     @{
                         string name = "";
-                        foreach (var item in ViewBag.ListMessage)
+                        foreach (var item in ViewBag.Message)
                         {
 
                             if (item.AppUser.Name != name)
@@ -39,7 +39,7 @@
                                     </div>
                                     <div class="users-list-body">
                                         <div>
-                                            <a href="/Message/ChatDetail/@item.AppUserID"><h5>@item.AppUser.Name</h5></a>
+                                            <a href="/Message/ChatDetails/@item.AppUserId"><h5>@item.AppUser.Name</h5></a>
                                         </div>
                                     </div>
                                 </li>
@@ -109,7 +109,7 @@
 
                                         <div class="message-content">
 
-                                            @item.MessageContent
+                                            @item.Content
                                             <div class="chat-time">
                                                 <div>
                                                     <div class="time"><i class="fas fa-clock"></i> @item.Date</div>
@@ -161,8 +161,8 @@
     </div>
     <div class="chat-footer">
         <form method="post" action="/Message/SendMessage">
-            <input type="hidden" name="receiverID" value="@ViewBag.receiverID" />
-            <input type="text" class="form-control chat_form" name="MessageContent" placeholder="Mesaj.....">
+            <input type="hidden" name="receiverId" value="@ViewBag.receiverId" />
+            <input type="text" class="form-control chat_form" name="Content" placeholder="Mesaj.....">
             <div class="form-buttons">
                 <button class="btn send-btn" type="submit">
                     <span class="material-icons">send</span>
